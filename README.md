@@ -31,6 +31,11 @@ public class MyDebugActivity extends DebugActivity {
         debugKVList.add(new DebugKV("AndroidId", "next to do"));
     }
 
+    @Override
+    protected void fillApiValues(List<DebugApi> debugApiList) {
+        debugApiList.add(new DebugApi("通用 - 全局字典", "common/dict"));
+        debugApiList.add(new DebugApi("通用 - 检查更新", "common/update"));
+    }
 }
 ```
 
