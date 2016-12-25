@@ -1,4 +1,4 @@
-[![Jcenter Status](https://api.bintray.com/packages/openproject/maven/lesscode-update/images/download.svg)](https://bintray.com/openproject/maven/lesscode-update)
+[![Jcenter Status](https://api.bintray.com/packages/openproject/maven/lesscode-debug/images/download.svg)](https://bintray.com/openproject/maven/lesscode-debug)
 
 # LessCode-Debug
 a common ui for app debug info to show or some else
