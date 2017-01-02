@@ -1,12 +1,12 @@
 [![Jcenter Status](https://api.bintray.com/packages/openproject/maven/lesscode-debug/images/download.svg)](https://bintray.com/openproject/maven/lesscode-debug)
 
 # LessCode-Debug
-a common ui for app debug info to show or some else
+a common ui for app debug info to show or something else
 
 ## Gradle
 
 ```groovy
-compile('com.jayfeng:lesscode-debug:1.0');
+compile('com.jayfeng:lesscode-debug:0.2');
 ```
 
 ## Overview
