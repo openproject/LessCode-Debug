@@ -6,7 +6,7 @@
     android:padding="16dp">
 
     <Button
-        android:id="@+id/test_online"
+        android:id="@+id/invoke"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -16,7 +16,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@id/test_online"
+        android:layout_toLeftOf="@id/invoke"
         android:orientation="vertical">
 
         <TextView

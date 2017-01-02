@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.jayfeng.lesscode.core.AdapterLess;
@@ -50,12 +51,19 @@ public class ApiFragment extends Fragment {
                 new AdapterLess.RecyclerCallBack<DebugApi>() {
 
                     @Override
-                    public void onBindViewHolder(int i, AdapterLess.RecyclerViewHolder recyclerViewHolder, DebugApi debugApi) {
+                    public void onBindViewHolder(int i, AdapterLess.RecyclerViewHolder recyclerViewHolder, final DebugApi debugApi) {
                         TextView keyView = recyclerViewHolder.$view(R.id.key);
                         TextView valueView = recyclerViewHolder.$view(R.id.value);
+                        Button invokeButton = recyclerViewHolder.$view(R.id.invoke);
 
                         keyView.setText(debugApi.getTitle());
                         valueView.setText(debugApi.getUrl());
+                        invokeButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                debugApi.getDebugApiCallBack().invoke(getContext());
+                            }
+                        });
                     }
                 });
         mRecyclerView.setAdapter(mAdapter);

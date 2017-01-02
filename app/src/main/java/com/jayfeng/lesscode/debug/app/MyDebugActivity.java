@@ -1,7 +1,11 @@
 package com.jayfeng.lesscode.debug.app;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import com.jayfeng.lesscode.debug.DebugActivity;
 import com.jayfeng.lesscode.debug.DebugApi;
+import com.jayfeng.lesscode.debug.DebugApiCallBack;
 import com.jayfeng.lesscode.debug.DebugKV;
 
 import java.util.List;
@@ -22,7 +26,17 @@ public class MyDebugActivity extends DebugActivity {
 
     @Override
     protected void fillApiValues(List<DebugApi> debugApiList) {
-        debugApiList.add(new DebugApi("通用 - 全局字典", "common/dict"));
-        debugApiList.add(new DebugApi("通用 - 检查更新", "common/update"));
+        debugApiList.add(new DebugApi("通用 - 全局字典", "common/dict", new DebugApiCallBack() {
+            @Override
+            public void invoke(Context context) {
+                Toast.makeText(context, "tttttttttttttttttt", Toast.LENGTH_SHORT).show();
+            }
+        }));
+        debugApiList.add(new DebugApi("通用 - 检查更新", "common/update", new DebugApiCallBack() {
+            @Override
+            public void invoke(Context context) {
+                Toast.makeText(context, "ooiiiiiii", Toast.LENGTH_SHORT).show();
+            }
+        }));
     }
 }

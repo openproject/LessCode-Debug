@@ -1,5 +1,6 @@
 package com.jayfeng.lesscode.debug;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -55,7 +56,12 @@ public class DebugActivity extends AppCompatActivity {
     }
 
     protected void fillApiValues(List<DebugApi> debugApiList) {
-        debugApiList.add(new DebugApi("用户模块 - 获取用户信息", "user/getUserInfo/4"));
+        debugApiList.add(new DebugApi("用户模块 - 获取用户信息", "user/getUserInfo/4", new DebugApiCallBack() {
+            @Override
+            public void invoke(Context context) {
+                // DEMO
+            }
+        }));
     }
 
     public List<DebugKV> getKVListData() {

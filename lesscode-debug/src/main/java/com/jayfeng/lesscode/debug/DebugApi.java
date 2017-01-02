@@ -4,10 +4,12 @@ public class DebugApi {
 
     private String title;
     private String url;
+    private DebugApiCallBack debugApiCallBack;
 
-    public DebugApi(String title, String url) {
+    public DebugApi(String title, String url, DebugApiCallBack debugApiCallBack) {
         this.title = title;
         this.url = url;
+        this.debugApiCallBack = debugApiCallBack;
     }
 
     public String getTitle() {
@@ -24,5 +26,13 @@ public class DebugApi {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public DebugApiCallBack getDebugApiCallBack() {
+        return debugApiCallBack;
+    }
+
+    public void setDebugApiCallBack(DebugApiCallBack debugApiCallBack) {
+        this.debugApiCallBack = debugApiCallBack;
     }
 }
