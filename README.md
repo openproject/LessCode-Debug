@@ -6,7 +6,7 @@ a common ui for app debug info to show or something else
 ## Gradle
 
 ```groovy
-compile('com.jayfeng:lesscode-debug:0.2');
+compile('com.jayfeng:lesscode-debug:1.0');
 ```
 
 ## Overview

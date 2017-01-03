@@ -1,6 +1,7 @@
 package com.jayfeng.lesscode.debug;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -62,6 +63,12 @@ public class DebugActivity extends AppCompatActivity {
                 // DEMO
             }
         }));
+    }
+
+    protected void showDebugApiLog(String debugApiLog) {
+        Intent intent = new Intent(this, DebugApiLogActivity.class);
+        intent.putExtra(DebugApiLogActivity.KEY_LOG, debugApiLog);
+        startActivity(intent);
     }
 
     public List<DebugKV> getKVListData() {
