@@ -4,6 +4,7 @@ public class DebugApi {
 
     private String title;
     private String url;
+    private int debugApiState = DebugApiState.STATE_NONE;
     private DebugApiCallBack debugApiCallBack;
 
     public DebugApi(String title, String url, DebugApiCallBack debugApiCallBack) {
@@ -26,6 +27,14 @@ public class DebugApi {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public int getDebugApiState() {
+        return debugApiState;
+    }
+
+    public void setDebugApiState(int debugApiState) {
+        this.debugApiState = debugApiState;
     }
 
     public DebugApiCallBack getDebugApiCallBack() {

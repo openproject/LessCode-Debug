@@ -15,6 +15,8 @@ import com.jayfeng.lesscode.core.AdapterLess;
 import com.jayfeng.lesscode.core.ViewLess;
 import com.jayfeng.lesscode.core.other.DividerItemDecoration;
 
+import java.util.List;
+
 public class KVFragment extends Fragment {
 
     protected RecyclerView mRecyclerView;
@@ -46,8 +48,11 @@ public class KVFragment extends Fragment {
         mDividerItemDecoration.setHeight(1);
         mRecyclerView.addItemDecoration(mDividerItemDecoration);
 
+        List<DebugKV> listData = ((DebugActivity)getActivity()).getKVListData();
+        listData.add(0, new DebugKV("KEY", "值"));
+
         mAdapter = AdapterLess.$recycler(getContext(),
-                ((DebugActivity)getActivity()).getKVListData(),
+                listData,
                 R.layout.fragment_kv_item,
                 new AdapterLess.RecyclerCallBack<DebugKV>() {
 

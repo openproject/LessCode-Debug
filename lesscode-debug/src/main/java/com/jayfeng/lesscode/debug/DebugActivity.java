@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.jayfeng.lesscode.core.AdapterLess;
 import com.jayfeng.lesscode.core.ViewLess;
@@ -59,7 +61,7 @@ public class DebugActivity extends AppCompatActivity {
     protected void fillApiValues(List<DebugApi> debugApiList) {
         debugApiList.add(new DebugApi("用户模块 - 获取用户信息", "user/getUserInfo/4", new DebugApiCallBack() {
             @Override
-            public void invoke(Context context) {
+            public void invoke(Context context, DebugApi debugApi, RecyclerView.Adapter adapter) {
                 // DEMO
             }
         }));
@@ -69,6 +71,16 @@ public class DebugActivity extends AppCompatActivity {
         Intent intent = new Intent(this, DebugApiLogActivity.class);
         intent.putExtra(DebugApiLogActivity.KEY_LOG, debugApiLog);
         startActivity(intent);
+    }
+
+    protected void updateDebugApiToSuccess(DebugApi debugApi, RecyclerView.Adapter adapter) {
+        debugApi.setDebugApiState(DebugApiState.STATE_SUCCESS);
+        adapter.notifyDataSetChanged();
+    }
+
+    protected void updateDebugApiToFailure(DebugApi debugApi, RecyclerView.Adapter adapter) {
+        debugApi.setDebugApiState(DebugApiState.STATE_FAILURE);
+        adapter.notifyDataSetChanged();
     }
 
     public List<DebugKV> getKVListData() {

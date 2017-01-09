@@ -16,12 +16,16 @@ import com.jayfeng.lesscode.core.AdapterLess;
 import com.jayfeng.lesscode.core.ViewLess;
 import com.jayfeng.lesscode.core.other.DividerItemDecoration;
 
+import java.util.List;
+
 public class ApiFragment extends Fragment {
 
     protected RecyclerView mRecyclerView;
     protected RecyclerView.LayoutManager mLayoutManager;
     protected RecyclerView.Adapter<AdapterLess.RecyclerViewHolder> mAdapter;
     private DividerItemDecoration mDividerItemDecoration;
+
+    private Button mOneKeyButton;
 
     public ApiFragment() {
         // Required empty public constructor
@@ -38,6 +42,8 @@ public class ApiFragment extends Fragment {
     }
 
     private void initView(View rootView) {
+        mOneKeyButton = ViewLess.$(rootView, R.id.onekey);
+
         mRecyclerView = ViewLess.$(rootView, R.id.recyclerview);
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -45,8 +51,10 @@ public class ApiFragment extends Fragment {
         mDividerItemDecoration.setHeight(1);
         mRecyclerView.addItemDecoration(mDividerItemDecoration);
 
+        final List<DebugApi> listData = ((DebugActivity)getActivity()).getApiListData();
+
         mAdapter = AdapterLess.$recycler(getContext(),
-                ((DebugActivity)getActivity()).getApiListData(),
+                listData,
                 R.layout.fragment_api_item,
                 new AdapterLess.RecyclerCallBack<DebugApi>() {
 
@@ -54,18 +62,34 @@ public class ApiFragment extends Fragment {
                     public void onBindViewHolder(int i, AdapterLess.RecyclerViewHolder recyclerViewHolder, final DebugApi debugApi) {
                         TextView keyView = recyclerViewHolder.$view(R.id.key);
                         TextView valueView = recyclerViewHolder.$view(R.id.value);
-                        Button invokeButton = recyclerViewHolder.$view(R.id.invoke);
+                        TextView invokeButton = recyclerViewHolder.$view(R.id.invoke);
 
                         keyView.setText(debugApi.getTitle());
                         valueView.setText(debugApi.getUrl());
+                        int colorRes = R.color.lesscode_debug_color_api_none;
+                        if (debugApi.getDebugApiState() == DebugApiState.STATE_SUCCESS) {
+                            colorRes = R.color.lesscode_debug_color_api_success;
+                        } else if (debugApi.getDebugApiState() == DebugApiState.STATE_FAILURE) {
+                            colorRes = R.color.lesscode_debug_color_api_failure;
+                        }
+                        invokeButton.setBackgroundColor(getResources().getColor(colorRes));
                         invokeButton.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                debugApi.getDebugApiCallBack().invoke(getContext());
+                                debugApi.getDebugApiCallBack().invoke(getContext(), debugApi, mAdapter);
                             }
                         });
                     }
                 });
         mRecyclerView.setAdapter(mAdapter);
+
+        mOneKeyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (DebugApi debugApi : listData) {
+                    debugApi.getDebugApiCallBack().invoke(getContext(), debugApi, mAdapter);
+                }
+            }
+        });
     }
 }
