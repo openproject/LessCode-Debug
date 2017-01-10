@@ -1,9 +1,15 @@
 package com.jayfeng.lesscode.debug;
 
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.jayfeng.lesscode.core.ToastLess;
 import com.jayfeng.lesscode.core.ViewLess;
 
 public class DebugApiLogActivity extends AppCompatActivity {
@@ -12,6 +18,7 @@ public class DebugApiLogActivity extends AppCompatActivity {
 
     private String mLogText;
 
+    private Button mCopyButton;
     private TextView mLogView;
 
     @Override
@@ -21,8 +28,19 @@ public class DebugApiLogActivity extends AppCompatActivity {
 
         mLogText = getIntent().getStringExtra(KEY_LOG);
 
+        mCopyButton = ViewLess.$(this, R.id.copy);
         mLogView = ViewLess.$(this, R.id.log);
         mLogView.setText(mLogText);
+
+        mCopyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClipboardManager clip = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
+                clip.setText(mLogText);
+
+                Toast.makeText(DebugApiLogActivity.this, "已复制到粘贴板", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

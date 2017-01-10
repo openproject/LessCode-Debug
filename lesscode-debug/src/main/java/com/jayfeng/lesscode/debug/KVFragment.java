@@ -1,5 +1,7 @@
 package com.jayfeng.lesscode.debug;
 
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jayfeng.lesscode.core.AdapterLess;
 import com.jayfeng.lesscode.core.ViewLess;
@@ -57,12 +60,23 @@ public class KVFragment extends Fragment {
                 new AdapterLess.RecyclerCallBack<DebugKV>() {
 
                     @Override
-                    public void onBindViewHolder(int i, AdapterLess.RecyclerViewHolder recyclerViewHolder, DebugKV debugKV) {
+                    public void onBindViewHolder(int i, AdapterLess.RecyclerViewHolder recyclerViewHolder, final DebugKV debugKV) {
+                        View container = recyclerViewHolder.$view(R.id.container);
                         TextView keyView = recyclerViewHolder.$view(R.id.key);
                         TextView valueView = recyclerViewHolder.$view(R.id.value);
 
                         keyView.setText(debugKV.getKey());
                         valueView.setText(debugKV.getValue());
+
+                        container.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                ClipboardManager clip = (ClipboardManager)getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                                clip.setText(debugKV.getValue());
+
+                                Toast.makeText(getContext(), "已复制到粘贴板:" + debugKV.getValue(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
                 });
         mRecyclerView.setAdapter(mAdapter);

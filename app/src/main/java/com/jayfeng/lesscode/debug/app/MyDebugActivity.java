@@ -34,6 +34,7 @@ public class MyDebugActivity extends DebugActivity {
             public void invoke(Context context, DebugApi debugApi, RecyclerView.Adapter adapter) {
                 updateDebugApiToFailure(debugApi, adapter);
                 Toast.makeText(context, "tttttttttttttttttt", Toast.LENGTH_SHORT).show();
+                showDebugApiLog("xxxxx");
             }
         }));
         debugApiList.add(new DebugApi("通用 - 检查更新", "common/update", new DebugApiCallBack() {
