@@ -60,13 +60,16 @@ public class KVFragment extends Fragment {
                 new AdapterLess.RecyclerCallBack<DebugKV>() {
 
                     @Override
-                    public void onBindViewHolder(int i, AdapterLess.RecyclerViewHolder recyclerViewHolder, final DebugKV debugKV) {
+                    public void onBindViewHolder(int position, AdapterLess.RecyclerViewHolder recyclerViewHolder, final DebugKV debugKV) {
                         View container = recyclerViewHolder.$view(R.id.container);
                         TextView keyView = recyclerViewHolder.$view(R.id.key);
                         TextView valueView = recyclerViewHolder.$view(R.id.value);
 
                         keyView.setText(debugKV.getKey());
                         valueView.setText(debugKV.getValue());
+
+                        keyView.getPaint().setFakeBoldText(position == 0);
+                        valueView.getPaint().setFakeBoldText(position == 0);
 
                         container.setOnClickListener(new View.OnClickListener() {
                             @Override
