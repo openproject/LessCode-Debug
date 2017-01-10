@@ -6,7 +6,7 @@ a common ui for app debug info to show or something else
 ## Gradle
 
 ```groovy
-compile('com.jayfeng:lesscode-debug:1.0');
+compile('com.jayfeng:lesscode-debug:1.2');
 ```
 
 ## Overview
@@ -33,8 +33,21 @@ public class MyDebugActivity extends DebugActivity {
 
     @Override
     protected void fillApiValues(List<DebugApi> debugApiList) {
-        debugApiList.add(new DebugApi("通用 - 全局字典", "common/dict"));
-        debugApiList.add(new DebugApi("通用 - 检查更新", "common/update"));
+        debugApiList.add(new DebugApi("通用 - 全局字典", "common/dict", new DebugApiCallBack() {
+            @Override
+            public void invoke(Context context, DebugApi debugApi, RecyclerView.Adapter adapter) {
+                updateDebugApiToFailure(debugApi, adapter);
+                Toast.makeText(context, "tttttttttttttttttt", Toast.LENGTH_SHORT).show();
+                showDebugApiLog("xxxxx");
+            }
+        }));
+        debugApiList.add(new DebugApi("通用 - 检查更新", "common/update", new DebugApiCallBack() {
+            @Override
+            public void invoke(Context context, DebugApi debugApi, RecyclerView.Adapter adapter) {
+                updateDebugApiToSuccess(debugApi, adapter);
+                Toast.makeText(context, "ooiiiiiii", Toast.LENGTH_SHORT).show();
+            }
+        }));
     }
 }
 ```
