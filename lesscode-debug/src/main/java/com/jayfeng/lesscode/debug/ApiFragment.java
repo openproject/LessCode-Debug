@@ -87,7 +87,9 @@ public class ApiFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 for (DebugApi debugApi : listData) {
-                    debugApi.getDebugApiCallBack().invoke(getContext(), debugApi, mAdapter);
+                    if (debugApi.isSupportOnekey()) {
+                        debugApi.getDebugApiCallBack().invoke(getContext(), debugApi, mAdapter);
+                    }
                 }
             }
         });

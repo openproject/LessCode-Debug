@@ -5,12 +5,20 @@ public class DebugApi {
     private String title;
     private String url;
     private int debugApiState = DebugApiState.STATE_NONE;
+    private boolean supportOnekey = true;
     private DebugApiCallBack debugApiCallBack;
 
     public DebugApi(String title, String url, DebugApiCallBack debugApiCallBack) {
         this.title = title;
         this.url = url;
         this.debugApiCallBack = debugApiCallBack;
+    }
+
+    public DebugApi(String title, String url, DebugApiCallBack debugApiCallBack, boolean supportOnekey) {
+        this.title = title;
+        this.url = url;
+        this.debugApiCallBack = debugApiCallBack;
+        this.supportOnekey = supportOnekey;
     }
 
     public String getTitle() {
@@ -35,6 +43,14 @@ public class DebugApi {
 
     public void setDebugApiState(int debugApiState) {
         this.debugApiState = debugApiState;
+    }
+
+    public boolean isSupportOnekey() {
+        return supportOnekey;
+    }
+
+    public void setSupportOnekey(boolean supportOnekey) {
+        this.supportOnekey = supportOnekey;
     }
 
     public DebugApiCallBack getDebugApiCallBack() {

@@ -45,6 +45,6 @@ public class MyDebugActivity extends DebugActivity {
             public void invoke(Context context, DebugApi debugApi, RecyclerView.Adapter adapter) {
                 updateDebugApiToSuccess(debugApi, adapter);
             }
-        }));
+        }, false));
     }
 }
