@@ -6,7 +6,7 @@ a common ui for app debug info to show or something else
 ## Gradle
 
 ```groovy
-compile('com.jayfeng:lesscode-debug:1.2');
+compile('com.jayfeng:lesscode-debug:1.5');
 ```
 
 ## Overview
@@ -47,7 +47,7 @@ public class MyDebugActivity extends DebugActivity {
                 updateDebugApiToSuccess(debugApi, adapter);
                 Toast.makeText(context, "ooiiiiiii", Toast.LENGTH_SHORT).show();
             }
-        }));
+        }, false));
     }
 }
 ```
