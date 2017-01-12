@@ -33,15 +33,17 @@ public class MyDebugActivity extends DebugActivity {
             @Override
             public void invoke(Context context, DebugApi debugApi, RecyclerView.Adapter adapter) {
                 updateDebugApiToFailure(debugApi, adapter);
-                Toast.makeText(context, "tttttttttttttttttt", Toast.LENGTH_SHORT).show();
-                showDebugApiLog("xxxxx");
+                showDebugApiLog("xxxxx", "1");
+                showDebugApiLog("yyyyy", "22222");
+                showDebugApiLog("zzzzz", "333333");
+                showDebugApiLog("1111111111", "4444444");
+                showDebugApiLog("222222222222", "5555555555555");
             }
         }));
         debugApiList.add(new DebugApi("通用 - 检查更新", "common/update", new DebugApiCallBack() {
             @Override
             public void invoke(Context context, DebugApi debugApi, RecyclerView.Adapter adapter) {
                 updateDebugApiToSuccess(debugApi, adapter);
-                Toast.makeText(context, "ooiiiiiii", Toast.LENGTH_SHORT).show();
             }
         }));
     }

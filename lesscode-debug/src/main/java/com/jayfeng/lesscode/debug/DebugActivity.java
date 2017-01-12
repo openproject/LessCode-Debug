@@ -67,9 +67,10 @@ public class DebugActivity extends AppCompatActivity {
         }));
     }
 
-    protected void showDebugApiLog(String debugApiLog) {
+    protected void showDebugApiLog(String debugApiLog, String title) {
         Intent intent = new Intent(this, DebugApiLogActivity.class);
         intent.putExtra(DebugApiLogActivity.KEY_LOG, debugApiLog);
+        intent.putExtra(DebugApiLogActivity.KEY_TITLE, title);
         startActivity(intent);
     }
 
