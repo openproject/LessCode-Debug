@@ -52,7 +52,7 @@ public class KVFragment extends Fragment {
         mRecyclerView.addItemDecoration(mDividerItemDecoration);
 
         List<DebugKV> listData = ((DebugActivity)getActivity()).getKVListData();
-        listData.add(0, new DebugKV("KEY", "值"));
+        listData.add(0, new DebugKV("KEY", "VALUE"));
 
         mAdapter = AdapterLess.$recycler(getContext(),
                 listData,
@@ -77,7 +77,7 @@ public class KVFragment extends Fragment {
                                 ClipboardManager clip = (ClipboardManager)getContext().getSystemService(Context.CLIPBOARD_SERVICE);
                                 clip.setText(debugKV.getValue());
 
-                                Toast.makeText(getContext(), "已复制到粘贴板:" + debugKV.getValue(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "Copied:" + debugKV.getValue(), Toast.LENGTH_SHORT).show();
                             }
                         });
                     }

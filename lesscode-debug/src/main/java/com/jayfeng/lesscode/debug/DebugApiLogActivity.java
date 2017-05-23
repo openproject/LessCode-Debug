@@ -56,7 +56,7 @@ public class DebugApiLogActivity extends AppCompatActivity {
                 ClipboardManager clip = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
                 clip.setText(mLogStringBuilder.toString());
 
-                Toast.makeText(DebugApiLogActivity.this, "已复制到粘贴板", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DebugApiLogActivity.this, "Copyed", Toast.LENGTH_SHORT).show();
             }
         });
     }

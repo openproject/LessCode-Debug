@@ -69,7 +69,7 @@ public final class DebugHttpLoggingInterceptor implements Interceptor {
         };
     }
     public interface DebugHttpLoggingCallback {
-        void onLog(String log);
+        void onLog(Response response, String log);
     }
 
     private StringBuilder logger;
@@ -255,7 +255,7 @@ public final class DebugHttpLoggingInterceptor implements Interceptor {
         }
 
         if (debugHttpLoggingCallback != null) {
-            debugHttpLoggingCallback.onLog(logger.toString());
+            debugHttpLoggingCallback.onLog(response, logger.toString());
         }
 
         return response;
