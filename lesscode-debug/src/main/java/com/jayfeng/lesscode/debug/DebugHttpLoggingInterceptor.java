@@ -214,17 +214,7 @@ public final class DebugHttpLoggingInterceptor implements Interceptor {
                 Charset charset = UTF8;
                 MediaType contentType = responseBody.contentType();
                 if (contentType != null) {
-                    try {
-                        charset = contentType.charset(UTF8);
-                    } catch (UnsupportedCharsetException e) {
-                        logger.append("");
-                        logger.append("Couldn't decode the response body; charset is likely malformed.");
-                        logger.append("\r\n");
-                        logger.append("<-- END HTTP");
-                        logger.append("\r\n");
-
-                        return response;
-                    }
+                    charset = contentType.charset(UTF8);
                 }
 
                 if (!isPlaintext(buffer)) {
