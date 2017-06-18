@@ -15,10 +15,6 @@
  */
 package com.jayfeng.lesscode.debug;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.EOFException;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -29,7 +25,6 @@ import okhttp3.Connection;
 import okhttp3.Headers;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
 import okhttp3.Protocol;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -69,7 +64,7 @@ public final class DebugHttpLoggingInterceptor implements Interceptor {
         };
     }
     public interface DebugHttpLoggingCallback {
-        void onLog(Response response, String log);
+        void onLog(boolean success, String log);
     }
 
     private StringBuilder logger;
@@ -255,7 +250,7 @@ public final class DebugHttpLoggingInterceptor implements Interceptor {
         }
 
         if (debugHttpLoggingCallback != null) {
-            debugHttpLoggingCallback.onLog(response, logger.toString());
+            debugHttpLoggingCallback.onLog(response.isSuccessful(), logger.toString());
         }
 
         return response;
