@@ -64,7 +64,7 @@ public final class DebugHttpLoggingInterceptor implements Interceptor {
         };
     }
     public interface DebugHttpLoggingCallback {
-        void onLog(boolean success, String log);
+        void onLog(boolean success, String log, String body);
     }
 
     private StringBuilder logger;
@@ -193,6 +193,7 @@ public final class DebugHttpLoggingInterceptor implements Interceptor {
                 + bodySize + " body" : "") + ')');
         logger.append("\r\n");
 
+        String message = "";
         if (logHeaders) {
             Headers headers = response.headers();
             for (int i = 0, count = headers.size(); i < count; i++) {
@@ -228,7 +229,7 @@ public final class DebugHttpLoggingInterceptor implements Interceptor {
                     logger.append("\r\n");
                     // format body to json
                     String str = buffer.clone().readString(charset).trim();
-                    String message = DebugUtils.formatBodyToJson(str);
+                    message = DebugUtils.formatBodyToJson(str);
 
                     logger.append(message);
                     logger.append("\r\n");
@@ -240,7 +241,7 @@ public final class DebugHttpLoggingInterceptor implements Interceptor {
         }
 
         if (debugHttpLoggingCallback != null) {
-            debugHttpLoggingCallback.onLog(response.isSuccessful(), logger.toString());
+            debugHttpLoggingCallback.onLog(response.isSuccessful(), logger.toString(), message);
         }
 
         return response;

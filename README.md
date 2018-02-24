@@ -6,7 +6,7 @@ a common ui for app debug info to show or something else
 ## Gradle
 
 ```groovy
-compile('com.jayfeng:lesscode-debug:2.0');
+implementation 'com.jayfeng:lesscode-debug:3.0'
 ```
 
 ## Overview
@@ -20,7 +20,7 @@ compile('com.jayfeng:lesscode-debug:2.0');
 public class MyDebugActivity extends DebugActivity {
 
     @Override
-    protected void fillValues(List<DebugKV> debugKVList) {
+    protected void fillKeyValues(List<DebugKV> debugKVList) {
         debugKVList.add(new DebugKV("UserToken", "11111111111111111111"));
         debugKVList.add(new DebugKV("UserToken2", "2222"));
         debugKVList.add(new DebugKV("UserToken3", "333"));
